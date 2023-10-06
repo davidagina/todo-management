@@ -1,4 +1,4 @@
-package com.daveproject.todo.utils;
+package com.daveproject.todo.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
