@@ -28,9 +28,9 @@ public class TodoServiceImpl implements TodoService {
         //  convert saved Todo Jpa entity object into TodoDto object
         TodoDto savedTodoDto = new TodoDto();
         savedTodoDto.setId(savedTodo.getId());
-        savedTodoDto.setTitle(savedTodoDto.getTitle());
-        savedTodoDto.setDescription(savedTodoDto.getDescription());
-        savedTodoDto.setCompleted(savedTodoDto.isCompleted());
+        savedTodoDto.setTitle(savedTodo.getTitle());
+        savedTodoDto.setDescription(savedTodo.getDescription());
+        savedTodoDto.setCompleted(savedTodo.isCompleted());
 
         return savedTodoDto;
     }
