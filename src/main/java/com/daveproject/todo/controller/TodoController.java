@@ -1,6 +1,7 @@
 package com.daveproject.todo.controller;
 
 import com.daveproject.todo.dto.TodoDto;
+import com.daveproject.todo.entity.Todo;
 import com.daveproject.todo.service.TodoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -38,6 +39,13 @@ public class TodoController {
     public ResponseEntity<List<TodoDto>> getAllTodos(){
         List<TodoDto> todos = todoService.getAllTodos();
         return new ResponseEntity<>(todos, HttpStatus.OK);
+    }
+
+    // Build Update Todo REST API
+    @PutMapping("{id}")
+    public ResponseEntity updateTodo(@RequestBody TodoDto todoDto, @PathVariable("id") Long todoId){
+        TodoDto updatedTodo = todoService.updateTodo(todoDto, todoId);
+        return ResponseEntity.ok(updatedTodo);
     }
 
 }
