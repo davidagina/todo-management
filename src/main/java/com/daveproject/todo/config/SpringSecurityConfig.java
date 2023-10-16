@@ -1,5 +1,6 @@
 package com.daveproject.todo.config;
 
+import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,7 +17,10 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableMethodSecurity
+@AllArgsConstructor
 public class SpringSecurityConfig {
+
+    private UserDetailsService userDetailsService;
 
     @Bean
     public static PasswordEncoder passwordEncoder(){
@@ -40,6 +44,8 @@ public class SpringSecurityConfig {
         }).httpBasic(Customizer.withDefaults());
         return http.build();
     }
+
+
 
     @Bean
     public UserDetailsService userDetailsService(){
