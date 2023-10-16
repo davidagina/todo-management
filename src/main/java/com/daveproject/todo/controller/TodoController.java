@@ -6,6 +6,7 @@ import com.daveproject.todo.service.TodoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class TodoController {
 
     // Build Add Todo REST API
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public ResponseEntity<TodoDto> addTodo(@RequestBody TodoDto todoDto){
 
@@ -42,6 +44,7 @@ public class TodoController {
     }
 
     // Build Update Todo REST API
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("{id}")
     public ResponseEntity updateTodo(@RequestBody TodoDto todoDto, @PathVariable("id") Long todoId){
         TodoDto updatedTodo = todoService.updateTodo(todoDto, todoId);
@@ -49,6 +52,7 @@ public class TodoController {
     }
 
     // Build Delete Todo REST API
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteTodo(@PathVariable("id") Long todoId){
         todoService.deleteTodo(todoId);
