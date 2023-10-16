@@ -29,6 +29,7 @@ public class TodoController {
     }
 
     // Build Get Todo REST API
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping("{id}")
     public  ResponseEntity<TodoDto> getTodo(@PathVariable("id") Long todoId){
         TodoDto todoDto = todoService.getTodo(todoId);
@@ -37,6 +38,7 @@ public class TodoController {
     }
 
     // Build Get All Todos REST API
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @GetMapping
     public ResponseEntity<List<TodoDto>> getAllTodos(){
         List<TodoDto> todos = todoService.getAllTodos();
@@ -60,6 +62,7 @@ public class TodoController {
     }
 
     // Build Complete Todo REST API
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PatchMapping("{id}/complete")
     public ResponseEntity<TodoDto> completeTodo(@PathVariable("id") Long todoId){
         TodoDto updatedTodo = todoService.completeTodo(todoId);
@@ -67,6 +70,7 @@ public class TodoController {
     }
 
     // Build Incomplete Todo REST API
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @PatchMapping("{id}/incomplete")
     public ResponseEntity<TodoDto> incompleteTodo(@PathVariable("id") Long todoId){
         TodoDto updatedTodo = todoService.incompleteTodo(todoId);
